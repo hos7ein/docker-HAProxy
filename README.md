@@ -4,7 +4,8 @@ docker-HAProxy
 
 ### Configuration ###
 
-```global
+```
+   global
        # master-worker required for `program` section
        # enable here or start with -Ws
        master-worker
@@ -13,13 +14,15 @@ docker-HAProxy
        stats socket /var/lib/haproxy/stats user haproxy group haproxy mode 660 level admin
 ```
 
-```userlist dataplaneapi
+```
+   userlist dataplaneapi
        user myusername insecure-password mypassword
 ```
 
-```program api
-    command dataplaneapi --host 0.0.0.0 --port 5555 --haproxy-bin /usr/sbin/haproxy --config-file /etc/haproxy/haproxy.cfg --reload-cmd "kill -SIGUSR2 1" --reload-delay 5 --userlist dataplaneapi
-    no option start-on-reload
+```
+   program api
+       command dataplaneapi --host 0.0.0.0 --port 5555 --haproxy-bin /usr/sbin/haproxy --config-file /etc/haproxy/haproxy.cfg --reload-cmd "kill -SIGUSR2 1" --reload-delay 5 --userlist dataplaneapi
+       no option start-on-reload
 ```
 
 
