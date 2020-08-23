@@ -79,6 +79,18 @@ jobs:
           curl -X GET https://docker.pkg.github.com/hos7ein/docker-haproxy/v2/_catalog
           curl -X GET https://docker.pkg.github.com/hos7ein/docker-haproxy/image
           curl -X GET https://docker.pkg.github.com/hos7ein/docker-haproxy/haproxy
+          
+          registry='docker.pkg.github.com/hos7ein/docker-haproxy'
+          name='image'
+          curl -v -sSL -X DELETE "http://${registry}/v2/${name}/manifests/$(
+          curl -sSL -I \
+          -H "Accept: application/vnd.docker.distribution.manifest.v2+json" \
+          "http://${registry}/v2/${name}/manifests/$(
+            curl -sSL "http://${registry}/v2/${name}/tags/list" | jq -r '.tags[0]'
+          )" \
+          | awk '$1 == "Docker-Content-Digest:" { print $2 }' \
+          | tr -d $'\r' \
+          )"
           ###curl -X DELETE https://docker.pkg.github.com/hos7ein/docker-haproxy/image
           
           ###docker docker.pkg.github.com/${{ github.repository }} rmi image
