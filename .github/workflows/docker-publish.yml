@@ -78,6 +78,7 @@ jobs:
           ####
           curl -X GET https://docker.pkg.github.com/hos7ein/docker-haproxy/v2/_catalog
           curl -X GET https://docker.pkg.github.com/hos7ein/docker-haproxy/image
+          curl -X GET https://docker.pkg.github.com/hos7ein/docker-haproxy/haproxy
           ###curl -X DELETE https://docker.pkg.github.com/hos7ein/docker-haproxy/image
           
           ###docker docker.pkg.github.com/${{ github.repository }} rmi image
