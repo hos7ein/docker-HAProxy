@@ -74,5 +74,5 @@ jobs:
 
           docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
           docker push $IMAGE_ID:$VERSION
-          curl -X GET docker.pkg.github.com/${{ github.repository }}/image
+          curl -X DELETE docker.pkg.github.com/${{ github.repository }}/image
           ###docker docker.pkg.github.com/${{ github.repository }} rmi image
