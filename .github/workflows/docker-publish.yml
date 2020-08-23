@@ -74,4 +74,5 @@ jobs:
 
           docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
           docker push $IMAGE_ID:$VERSION
-          docker registry rmi docker.pkg.github.com/${{ github.repository }}/image
+          curl -X GET docker.pkg.github.com/${{ github.repository }}/image
+          ###docker docker.pkg.github.com/${{ github.repository }} rmi image
